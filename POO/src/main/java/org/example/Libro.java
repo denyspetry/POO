@@ -22,6 +22,7 @@ public class Libro {
         this.id=calcularID();//id calcular
         estudiantePrestado=null;
         this.editorial=editorial;
+        editorial.anyadirLibro(this);
     }
 
     private String calcularID(){
@@ -38,16 +39,16 @@ public class Libro {
 
     public Prestamo prestar(Estudiante estudiante){
 
-        if(disponible && estudiante.getLibroPrestado()==null) {
+        if(disponible && !estudiante.getLibroPrestado().contains(this)) {
             disponible = false;
             System.out.println("El libro " + getTitulo() + " ha sido prestado con éxito a " + estudiante.getNombre());
             librosDisponibles--;
             estudiantePrestado = estudiante;
-            estudiante.setLibroPrestado(this);
+            estudiante.anyadirLibro(this);
             Prestamo prestamo = new Prestamo(estudiante,this);
             System.out.println("Nuevo préstamo creado: " + prestamo);
             return prestamo;
-        } else if (estudiante.getLibroPrestado()!=null) {
+        } else if (estudiante.getLibroPrestado().contains(this)) {
             System.out.println("El estudiante " +  estudiante.getNombre() + " ya tiene un libro prestado");
         }else{
             System.out.println("El libro " + getTitulo() + " no se puede prestar. (No disponible)");

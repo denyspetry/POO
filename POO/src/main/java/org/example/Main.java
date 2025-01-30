@@ -33,6 +33,10 @@ public class Main {
 
         //Estudiante estudiante1 = new Estudiante("Paco");
 
+        Persona persona1 = new Persona("Marta","Poveda","12345678W",'M',23);
+        Equipo equipo1 = new Equipo("Barstra");
+        System.out.println(persona1);
+        System.out.println(equipo1);
 
 
     }
