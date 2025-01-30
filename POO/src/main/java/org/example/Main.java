@@ -22,13 +22,18 @@ public class Main {
         System.out.println(persona1.getApellido());
         persona1.setNombre("Messi");
         System.out.println(persona1.getNombre());
-
          */
+        /*
         Paciente paciente1 = new Paciente("Luis",45,'H',90, 1.90);
 
         paciente1.imprimirInfo();
         Paciente paciente2 = new Paciente();
         paciente2.imprimirInfo();
+         */
+
+        //Estudiante estudiante1 = new Estudiante("Paco");
+
+
 
     }
 }
