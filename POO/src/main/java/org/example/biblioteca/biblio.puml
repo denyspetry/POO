@@ -1,0 +1,98 @@
+@startuml
+
+package "org.example.biblioteca" {
+    class Editorial {
+        - String nombre
+        - String pais
+        - ArrayList<Libro> librosPublicados
+
+        + Editorial(String nombre, String pais)
+        + String getNombre()
+        + void setNombre(String nombre)
+        + String getPais()
+        + void setPais(String pais)
+        + ArrayList<Libro> getLibrosPublicados()
+        + void setLibrosPublicados(ArrayList<Libro> librosPublicados)
+        + void anyadirLibro(Libro libro)
+        + void borrarLibro(Libro libro)
+        + String toString()
+    }
+
+    class Libro {
+        + static int cantidadLibros
+        + static int librosDisponibles
+        + static final String ID_LIBROS
+        - String titulo
+        - String autor
+        - String id
+        - boolean disponible
+        - Estudiante estudiantePrestado
+        - Editorial editorial
+
+        + Libro(String titulo, String autor, Editorial editorial)
+        - String calcularID()
+        + Prestamo prestar(Estudiante estudiante)
+        + void devolver(Estudiante estudiante)
+        + boolean getDisponible()
+        + void estaDisponible()
+        + void setDisponible(boolean disponible)
+        + String getId()
+        + String getAutor()
+        + void setAutor(String autor)
+        + String getTitulo()
+        + void setTitulo(String titulo)
+        + static int getLibrosDisponibles()
+        + static int getTotalLibros()
+        + Estudiante getEstudiantePrestado()
+        + void setEstudiantePrestado(Estudiante estudiantePrestado)
+        + Editorial getEditorial()
+        + void setEditorial(Editorial editorial)
+        + String toString()
+    }
+
+    class Estudiante {
+        + static int contadorEstudiantes
+        - String nombre
+        - String curso
+        - int nia
+        - String email
+        - ArrayList<Libro> librosPrestados
+
+        + Estudiante(String nombre, String curso, String email)
+        + Estudiante(String nombre)
+        + String getNombre()
+        + void setNombre(String nombre)
+        + String getCurso()
+        + void setCurso(String curso)
+        + int getNia()
+        + String getEmail()
+        + void setEmail(String email)
+        + static int obtenerTotalEstudiantes()
+        + ArrayList<Libro> getLibroPrestado()
+        + void setLibroPrestado(ArrayList<Libro> librosPrestados)
+        + void anyadirLibro(Libro libro)
+        + void borrarLibro(Libro libro)
+        + String toString()
+    }
+
+    class Prestamo {
+        - Estudiante estudiante
+        - Libro libro
+        - LocalDate fecha
+
+        + Prestamo(Estudiante estudiante, Libro libro)
+        + LocalDate getFecha()
+        + Libro getLibro()
+        + void setLibro(Libro libro)
+        + Estudiante getEstudiante()
+        + void setEstudiante(Estudiante estudiante)
+        + String toString()
+    }
+
+    Estudiante "1" o-- "*" Libro : presta
+    Libro "1" o-- "1" Editorial : pertenece a
+    Prestamo "1" o-- "1" Libro : asociado a
+    Prestamo "1" o-- "1" Estudiante : solicitado por
+}
+
+@enduml
